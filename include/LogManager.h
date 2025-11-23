@@ -1,14 +1,7 @@
 #ifndef __LOG_MANAGER_H__
 #define __LOG_MANAGER_H__
 
-#include <stdio.h>
-#include <stdarg.h>
-#include <string.h>
-
 #include "Manager.h"
-#include "GameManager.h"
-#include "utility.h"
-#include "limits.h"
 
 // Get singleton instance of LogManager.
 #define LM df::LogManager::getInstance()
@@ -22,6 +15,7 @@ private:
     LogManager();                       // Private since a singleton.
     LogManager(LogManager const&);      // Don't allow copy.
     void operator=(LogManager const&);  // Don't allow assignment
+
     bool m_do_flush;        // True if flush to disk after each write.
     int m_log_level;        // Logging level.
     bool m_log_time_string; // True if prepend time.

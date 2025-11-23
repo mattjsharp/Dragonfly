@@ -1,4 +1,11 @@
+#include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
+#include <limits.h>
+
 #include "LogManager.h"
+#include "GameManager.h"
+#include "utility.h"
 
 namespace df {
 
@@ -90,12 +97,12 @@ namespace df {
     }
 
     void LogManager::shutDown() {
-        Manager::shutDown();
-
         if (m_p_f != NULL) {
             fclose(m_p_f);
             m_p_f = NULL; // Preventing double-free.
         }
+
+        Manager::shutDown();
     }
 
     void LogManager::setFlush(bool do_flush) {

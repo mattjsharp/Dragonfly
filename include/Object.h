@@ -4,9 +4,11 @@
 #include <string>
 
 #include "Vector.h"
-#include "Event.h"
 
 namespace df {
+
+// Forward declarations.
+class Event;
 
 class Object {
 private:

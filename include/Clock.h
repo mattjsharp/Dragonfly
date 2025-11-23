@@ -1,8 +1,6 @@
 #ifndef __CLOCK_H__
 #define __CLOCK_H__
 
-#include <time.h>
-
 namespace df {
 
 class Clock {

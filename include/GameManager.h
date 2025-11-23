@@ -2,8 +2,6 @@
 #define __GAME_MANAGER_H__
 
 #include "Manager.h"
-#include "LogManager.h"
-#include "Clock.h"
 
 // Macro to get the singleton instance of GameManager
 #define GM df::GameManager::getInstance()
@@ -18,6 +16,7 @@ private:
     GameManager();                          // Private since singleton.
     GameManager(GameManager const&);        // Don't allow copy.
     void operator=(GameManager const&);     // Don't allow assignment.
+
     bool m_game_over;         // True, then game loop should stop.
     int m_frame_time;         // Target time per game loop, in milliseconds.
     int m_step_count;         // Count of game loop iterations.

@@ -1,4 +1,9 @@
+#include <time.h>
+
 #include "GameManager.h"
+#include "LogManager.h"
+#include "WorldManager.h"
+#include "Clock.h"
 
 namespace df {
 
@@ -16,18 +21,20 @@ namespace df {
     int GameManager::startUp() {
         Manager::startUp(); // Call base class method to set m_is_started to true.
         LM.startUp();
+        WM.startUp();
 
         LM.writeLog("DF: GameManager started.");
         return 0;
     }
 
     void GameManager::shutDown() {
-        setGameOver(false); // To indicate to other game objects
-        Manager::shutDown();
+        setGameOver(false); // To indicate to other game objects.
 
         LM.writeLog("DF: GameManager shut down.");
 
+        WM.shutDown();
         LM.shutDown();
+        Manager::shutDown();
     }
 
     void GameManager::run() {

@@ -1,8 +1,6 @@
 #ifndef __VECTOR_H__
 #define __VECTOR_H__
 
-#include <math.h>
-
 namespace df {
 
 class Vector {

@@ -3,11 +3,12 @@
 
 #include <stdexcept>
 
-#include "Object.h"
-
 namespace df {
 
 const int MAX_OBJECTS = 1000;
+
+// Forward declarations.
+class Object;
 
 class ObjectList {
 private:

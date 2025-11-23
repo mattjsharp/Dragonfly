@@ -1,14 +1,25 @@
 #include "Object.h"
+#include "WorldManager.h"
 
 namespace df {
+    // Construct Object. Set default parameters and
+    // add to game world (WorldManager).
     Object::Object() {
         static int new_id = 0;
         setId(new_id++);
         setType("Object");
         setPosition(Vector());
+
+        // Add self to game world.
+        WM.insertObject(this);
     }
 
-    Object::~Object() {}
+    // Destroy Object.
+    // Remove from game world (WorldManager).
+    Object::~Object() {
+        // Remove self from game world.
+        WM.removeObject(this);
+    }
 
     void Object::setId(int new_id) {
         m_id = new_id;

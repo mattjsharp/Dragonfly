@@ -1,3 +1,5 @@
+#include <time.h>
+
 #include "Clock.h"
 
 namespace df {

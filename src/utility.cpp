@@ -1,3 +1,6 @@
+#include <time.h>
+#include <stdio.h>
+
 #include "utility.h"
 
 namespace df {
