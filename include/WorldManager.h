@@ -12,6 +12,8 @@ namespace df {
 // Forward declarations.
 class ObjectList;
 
+const int MAX_ALTITUDE = 4;
+
 class WorldManager : public Manager {
 private:
     WorldManager();     // Private (a singleton).

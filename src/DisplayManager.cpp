@@ -141,8 +141,10 @@ namespace df {
             case CYAN:
                 text.setFillColor(sf::Color::Cyan);
                 break;
+            case WHITE:
             default:
                 text.setFillColor(sf::Color::White);
+                break;
         }
 
         // Set position in window (in pixels).
@@ -166,6 +168,31 @@ namespace df {
         m_p_window->clear();
 
         return 0; // Success.
+    }
+
+    int DisplayManager::drawString(Vector pos, std::string str, Justification just, Color color) const {
+        // Get starting position.
+        Vector starting_pos = pos;
+        switch (just) {
+            case CENTER_JUSTIFIED:
+                starting_pos.setX(pos.getX() - str.size()/2);
+                break;
+            case RIGHT_JUSTIFIED:
+                starting_pos.setX(pos.getX() - str.size());
+                break;
+            case LEFT_JUSTIFIED:
+            default:
+                break;
+        }
+
+        // Draw string character by character.
+        for (int i = 0; i < str.size(); i++) {
+            Vector temp_pos(starting_pos.getX() + i, starting_pos.getY());
+            drawCh(temp_pos, str[i], color);
+        }
+
+        // All is well.
+        return 0;
     }
 
     int DisplayManager::getHorizontal() const {

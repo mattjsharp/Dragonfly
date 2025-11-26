@@ -22,6 +22,12 @@ const sf::Color WINDOW_BACKGROUND_COLOR_DEFAULT = sf::Color::Black;
 const std::string WINDOW_TITLE_DEFAULT = "Dragonfly";
 const std::string FONT_FILE_DEFAULT = "df-font.ttf";
 
+enum Justification {
+    LEFT_JUSTIFIED,
+    CENTER_JUSTIFIED,
+    RIGHT_JUSTIFIED
+};
+
 class DisplayManager : public Manager {
 private:
     DisplayManager();                       // Private (a singleton).
@@ -67,6 +73,11 @@ public:
 
     // Return pointer to SFML graphics window.
     sf::RenderWindow* getWindow() const;
+
+    // Draw string at window location (x, y) with default color.
+    // Justified left, center, or right.
+    // Return 0 if ok, else -1.
+    int drawString(Vector pos, std::string str, Justification just, Color color) const;
 
 };
 

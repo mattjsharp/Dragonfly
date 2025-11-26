@@ -4,7 +4,7 @@ project(Dragonfly)
 set(CMAKE_CXX_STANDARD 17)
 
 # Add SFML 3.x
-find_package(SFML 3 REQUIRED COMPONENTS system window graphics)
+find_package(SFML 3 REQUIRED COMPONENTS System Window Graphics)
 
 # Engine library
 file(GLOB DF_SOURCES src/*.cpp)
@@ -14,9 +14,9 @@ target_include_directories(dragonfly PUBLIC include)
 
 # Link SFML targets
 target_link_libraries(dragonfly
-SFML::System
-SFML::Window
-SFML::Graphics
+    SFML::System
+    SFML::Window
+    SFML::Graphics
 )
 
 enable_testing()

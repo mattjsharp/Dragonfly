@@ -77,8 +77,12 @@ namespace df {
     }
 
     void WorldManager::draw() {
-        for (int i = 0; i < m_updates.getCount(); i++) {
-            m_updates[i]->draw();
+        for (int alt = 0; alt <= MAX_ALTITUDE; alt++) { // Draw in layers of altitude.
+            for (int i = 0; i < m_updates.getCount(); i++) {
+                if (m_updates[i]->getAltitude() == alt) {
+                    m_updates[i]->draw();
+                }
+            }
         }
     }
 }

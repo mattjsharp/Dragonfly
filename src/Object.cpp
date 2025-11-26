@@ -6,9 +6,11 @@ namespace df {
     // add to game world (WorldManager).
     Object::Object() {
         static int new_id = 0;
-        setId(new_id++);
+        m_altitude = MAX_ALTITUDE / 2;
+        m_id = new_id++;
+        m_position = Vector();
+
         setType("Object");
-        setPosition(Vector());
 
         // Add self to game world.
         WM.insertObject(this);
@@ -43,6 +45,19 @@ namespace df {
 
     Vector Object::getPosition() const {
         return m_position;
+    }
+
+    int Object::setAltitude(int new_altitude) {
+        if (new_altitude < 0 || new_altitude > MAX_ALTITUDE)
+            return -1;
+
+        m_altitude = new_altitude;
+
+        return 0;
+    }
+
+    int Object::getAltitude() const {
+        return m_altitude;
     }
 
     int Object::eventHandler(const Event* p_e) {

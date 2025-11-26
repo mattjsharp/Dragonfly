@@ -13,6 +13,7 @@ class Event;
 class Object {
 private:
     int m_id;               // Unique game engine defined identifier.
+    int m_altitude;         // 0 to MAX supported (lower drawn first).
     std::string m_type;     // Game programmer defined type.
     Vector m_position;      // Position in game world.
 
@@ -39,6 +40,13 @@ public:
 
     // Set position of Object.
     void setPosition(Vector new_pos);
+
+    // Set altitude of Object, with checks for range (0, MAX_ALTITUDE).
+    // Return 0 if ok, else -1.
+    int setAltitude(int new_altitude);
+
+    // Return altitude of Object.
+    int getAltitude() const;
 
     // Get position of Object.
     Vector getPosition() const;
