@@ -46,6 +46,9 @@ public:
     // Handle event (default is to ignore everything).
     // Return 0 if ignored, else 1 if handled.
     virtual int eventHandler(const Event* p_e);
+
+    // Draws object to the display.
+    virtual int draw();
 };
 
 }

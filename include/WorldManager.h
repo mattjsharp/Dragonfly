@@ -51,6 +51,9 @@ public:
     // Indicate Object is to be delete at end of current game loop.
     // Return 0 if ok, else -1.
     int markForDelete(Object* p_o);
+
+    // Draw all Objects.
+    void draw();
 };
 
 }

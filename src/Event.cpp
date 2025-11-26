@@ -1,6 +1,7 @@
 #include "Event.h"
 
 namespace df {
+
     Event::Event() {
         setType(UNDEFINED_EVENT);
     }

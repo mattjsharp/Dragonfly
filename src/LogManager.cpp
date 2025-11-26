@@ -68,10 +68,11 @@ namespace df {
 
             return message_len;
         }
-    }
+    } // End of anonymous namespace.
 
     LogManager::LogManager() {
         setType("LogManager");
+
         m_p_f = NULL;
         m_do_flush = false;
         m_log_time_string = true;
@@ -89,11 +90,15 @@ namespace df {
     }
 
     int LogManager::startUp() {
-        Manager::startUp(); // Call base class method to set m_is_started to true.
 
         m_p_f = fopen(LOGFILE_NAME.c_str(), "w");
 
-        return m_p_f == NULL ? -1 : 0; // 0 if file opens.
+        if (m_p_f == NULL)
+            return -1;
+
+        Manager::startUp(); // Call base class method to set m_is_started to true.
+
+        return 0;
     }
 
     void LogManager::shutDown() {

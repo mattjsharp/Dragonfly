@@ -1,6 +1,7 @@
 #include "ObjectList.h"
 
 namespace df {
+
     ObjectList::ObjectList() {
         m_count = 0;
     }

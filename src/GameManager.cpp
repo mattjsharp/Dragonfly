@@ -3,7 +3,11 @@
 #include "GameManager.h"
 #include "LogManager.h"
 #include "WorldManager.h"
+#include "DisplayManager.h"
 #include "Clock.h"
+#include "Object.h"
+#include "ObjectList.h"
+#include "EventStep.h"
 
 namespace df {
 
@@ -19,11 +23,13 @@ namespace df {
     }
 
     int GameManager::startUp() {
-        Manager::startUp(); // Call base class method to set m_is_started to true.
         LM.startUp();
         WM.startUp();
+        DM.startUp();
 
         LM.writeLog("DF: GameManager started.");
+
+        Manager::startUp(); // Call base class method to set m_is_started to true.
         return 0;
     }
 
@@ -32,6 +38,7 @@ namespace df {
 
         LM.writeLog("DF: GameManager shut down.");
 
+        DM.shutDown();
         WM.shutDown();
         LM.shutDown();
         Manager::shutDown();
@@ -57,6 +64,15 @@ namespace df {
             // Swap buffer
             // ===================================================================
 
+            // Provide step event to all Objects.
+            Event s = EventStep(getStepCount());
+            onEvent(&s);
+
+            WM.update(); // Update WorldManager.
+            WM.draw(); // Draw all Objects.
+
+            DM.swapBuffers();
+
             // Time doing game logic.
             loop_time = clock.split(); // Microseconds.
 
@@ -65,7 +81,7 @@ namespace df {
             if  (intended_sleep_us < 0)
                 intended_sleep_us = 0;
 
-            // Convert microseconds to timespec
+            // Convert microseconds to timespec.
             struct timespec ts;
             ts.tv_sec = intended_sleep_us / 1'000'000;
             ts.tv_nsec = (intended_sleep_us % 1'000'000) * 1'000;
@@ -74,7 +90,7 @@ namespace df {
 
             nanosleep(&ts, NULL);
 
-            // Time actually slept
+            // Time actually slept.
             actual_sleep_time = clock.split(); // Microseconds.
 
             // Adjust for next frame.

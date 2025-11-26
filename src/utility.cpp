@@ -4,6 +4,7 @@
 #include "utility.h"
 
 namespace df {
+
     char *getTimeString() {
         // String to return, made 'static' so persists.
         static char time_str[30];

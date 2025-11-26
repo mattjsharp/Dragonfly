@@ -6,3 +6,7 @@ build/
 *.a
 *.o
 *.so
+*.exe
+
+# CMake should generate build system
+Makefile

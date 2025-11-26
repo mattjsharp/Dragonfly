@@ -5,6 +5,9 @@
 
 namespace df {
 
+// Forward declarations.
+class Event;
+
 class Manager {
 private:
     std::string m_type;     // Manager type identifier.
@@ -30,6 +33,10 @@ public:
 
     // Return true when startUp() was executed ok, else false.
     bool isStarted() const;
+
+    // Send event to all Objects.
+    // Return count of number events sent.
+    int onEvent(const Event* p_event) const;
 };
 
 }

@@ -48,4 +48,8 @@ namespace df {
     int Object::eventHandler(const Event* p_e) {
         return 0;
     }
+
+    int Object::draw() {
+        return 0;
+    }
 }

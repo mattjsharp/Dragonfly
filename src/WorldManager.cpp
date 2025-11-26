@@ -2,6 +2,7 @@
 #include "Object.h"
 
 namespace df {
+
     WorldManager::WorldManager() {
         setType("WorldManager");
         m_updates = ObjectList();
@@ -14,7 +15,7 @@ namespace df {
     }
 
     int WorldManager::startUp() {
-        Manager::startUp();
+        Manager::startUp();  // Call base class method to set m_is_started to true.
 
         return 0;
     }
@@ -26,7 +27,7 @@ namespace df {
             delete ol[i];
         }
 
-        Manager::shutDown();
+        Manager::shutDown();  // Call base class method to set m_is_started to false.
     }
 
     int WorldManager::insertObject(Object* p_o) {
@@ -73,5 +74,11 @@ namespace df {
 
         // Object not in list, so add.
         return m_deletions.insert(p_o);
+    }
+
+    void WorldManager::draw() {
+        for (int i = 0; i < m_updates.getCount(); i++) {
+            m_updates[i]->draw();
+        }
     }
 }

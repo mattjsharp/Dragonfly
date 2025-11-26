@@ -1,6 +1,7 @@
 #include "EventStep.h"
 
 namespace df {
+
     EventStep::EventStep() : EventStep(0) {}
 
     EventStep::EventStep(int init_step_count) {
