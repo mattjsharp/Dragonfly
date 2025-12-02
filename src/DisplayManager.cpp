@@ -183,6 +183,7 @@ namespace df {
                 break;
             case LEFT_JUSTIFIED:
             default:
+                return -1; // No valid justification provided.
                 break;
         }
 
