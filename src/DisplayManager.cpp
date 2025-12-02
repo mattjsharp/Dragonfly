@@ -182,6 +182,7 @@ namespace df {
                 starting_pos.setX(pos.getX() - str.size());
                 break;
             case LEFT_JUSTIFIED:
+                break; // Default position.
             default:
                 return -1; // No valid justification provided.
                 break;
