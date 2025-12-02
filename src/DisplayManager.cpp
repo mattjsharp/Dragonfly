@@ -190,7 +190,8 @@ namespace df {
         // Draw string character by character.
         for (int i = 0; i < str.size(); i++) {
             Vector temp_pos(starting_pos.getX() + i, starting_pos.getY());
-            drawCh(temp_pos, str[i], color);
+            if (!drawCh(temp_pos, str[i], color)) // Fails if any character can't be drawn.
+                return -1;
         }
 
         // All is well.
