@@ -45,6 +45,7 @@ namespace df {
         m_window_vertical_pixels = WINDOW_VERTICAL_PIXELS_DEFAULT;
         m_window_horizontal_chars = WINDOW_HORIZONTAL_CHARS_DEFAULT;
         m_window_vertical_chars = WINDOW_VERTICAL_CHARS_DEFAULT;
+        m_window_background_color = WINDOW_BACKGROUND_COLOR_DEFAULT;
     }
 
     DisplayManager &DisplayManager::getInstance() {
@@ -165,7 +166,7 @@ namespace df {
         m_p_window->display();
 
         // Clear other window to get ready for next draw.
-        m_p_window->clear();
+        m_p_window->clear(m_window_background_color);
 
         return 0; // Success.
     }
@@ -193,6 +194,39 @@ namespace df {
 
         // All is well.
         return 0;
+    }
+
+    bool DisplayManager::setBackgroundColor(int new_color) {
+        switch (new_color) {
+            case WHITE:
+                m_window_background_color = sf::Color::White;
+                break;
+            case RED:
+                m_window_background_color = sf::Color::Red;
+                break;
+            case GREEN:
+                m_window_background_color = sf::Color::Green;
+                break;
+            case YELLOW:
+                m_window_background_color = sf::Color::Yellow;
+                break;
+            case BLUE:
+                m_window_background_color = sf::Color::Blue;
+                break;
+            case MAGENTA:
+                m_window_background_color = sf::Color::Magenta;
+                break;
+            case CYAN:
+                m_window_background_color = sf::Color::Cyan;
+                break;
+            case BLACK:
+                m_window_background_color = sf::Color::Black;
+                break;
+            default:
+                return false;
+        }        
+
+        return true;
     }
 
     int DisplayManager::getHorizontal() const {

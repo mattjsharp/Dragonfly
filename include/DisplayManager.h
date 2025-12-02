@@ -33,12 +33,13 @@ private:
     DisplayManager();                       // Private (a singleton).
     DisplayManager(DisplayManager const&);  // Don't allow copy.
     void operator=(DisplayManager const&);  // Don't allow assignment.
-    sf::Font m_font;                // Font used for ASCII graphics.
-    sf::RenderWindow* m_p_window;   // Pointer to SFML window.
-    int m_window_horizontal_pixels; // Horizontal pixels in window.
-    int m_window_vertical_pixels;   // Vertical pixels in window.
-    int m_window_horizontal_chars;  // Horizontal ASCII spaces in window.
-    int m_window_vertical_chars;    // Vertical ASCII spaces in window.
+    sf::Font m_font;                        // Font used for ASCII graphics.
+    sf::RenderWindow* m_p_window;           // Pointer to SFML window.
+    sf::Color m_window_background_color;    // Background window color.
+    int m_window_horizontal_pixels;         // Horizontal pixels in window.
+    int m_window_vertical_pixels;           // Vertical pixels in window.
+    int m_window_horizontal_chars;          // Horizontal ASCII spaces in window.
+    int m_window_vertical_chars;            // Vertical ASCII spaces in window.
 
 public:
     // Get the one and only instace of the DisplayManager.
@@ -73,6 +74,9 @@ public:
 
     // Return pointer to SFML graphics window.
     sf::RenderWindow* getWindow() const;
+
+    // Set default background color. Return true if ok, else false.
+    bool setBackgroundColor(int new_color);
 
     // Draw string at window location (x, y) with default color.
     // Justified left, center, or right.
