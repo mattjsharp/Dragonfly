@@ -23,9 +23,22 @@ namespace df {
     }
 
     int GameManager::startUp() {
-        LM.startUp();
-        WM.startUp();
-        DM.startUp();
+        if (LM.startUp())
+            return -1;
+        else {
+            LM.writeLog("DF: Starting GameManager...");
+            LM.writeLog("DF: LogManager starated.");
+        }
+        
+        if (WM.startUp())
+            LM.writeLog("DF: Failed to start WorldManager.");
+        else
+            LM.writeLog("DF: WorldManager started.");
+        
+        if (DM.startUp())
+            LM.writeLog("DF: Failed to start DisplayManager.");
+        else
+            LM.writeLog("DF: DisplayManager Starated");
 
         LM.writeLog("DF: GameManager started.");
 
@@ -36,7 +49,7 @@ namespace df {
     void GameManager::shutDown() {
         setGameOver(false); // To indicate to other game objects.
 
-        LM.writeLog("DF: GameManager shut down.");
+        LM.writeLog("DF: Shutting down GameManager...");
 
         DM.shutDown();
         WM.shutDown();
@@ -101,27 +114,20 @@ namespace df {
 
             m_step_count++; // Incrementing the game step count.
         }
-
     }
 
     GameManager &GameManager::getInstance() {
         static GameManager instance;
-        return instance;
+        return instance; 
     }
 
-    void GameManager::setGameOver(bool new_game_over) {
-        m_game_over = new_game_over;
+    void GameManager::setGameOver(bool new_game_over) { 
+        m_game_over = new_game_over; 
     }
 
-    bool GameManager::getGameOver() const {
-        return m_game_over;
-    }
+    bool GameManager::getGameOver() const { return m_game_over; }
 
-    int GameManager::getFrameTime() const {
-        return m_frame_time;
-    }
+    int GameManager::getFrameTime() const { return m_frame_time; }
 
-    int GameManager::getStepCount() const {
-        return m_step_count;
-    }
+    int GameManager::getStepCount() const { return m_step_count; }
 }
