@@ -181,10 +181,8 @@ namespace df {
             case RIGHT_JUSTIFIED:
                 starting_pos.setX(pos.getX() - str.size());
                 break;
-            case LEFT_JUSTIFIED:
-                break; // Default position.
             default:
-                return -1; // No valid justification provided.
+            case LEFT_JUSTIFIED: // Default case.
                 break;
         }
 
@@ -232,23 +230,13 @@ namespace df {
         return true;
     }
 
-    int DisplayManager::getHorizontal() const {
-        return m_window_horizontal_chars;
-    }
+    int DisplayManager::getHorizontal() const { return m_window_horizontal_chars; }
 
-    int DisplayManager::getVertical() const  {
-        return m_window_vertical_chars;
-    }
+    int DisplayManager::getVertical() const  { return m_window_vertical_chars; }
 
-    int DisplayManager::getHorizontalPixels() const {
-        return m_window_horizontal_pixels;
-    }
+    int DisplayManager::getHorizontalPixels() const { return m_window_horizontal_pixels; }
 
-    int DisplayManager::getVerticalPixels() const {
-        return m_window_vertical_pixels;
-    }
+    int DisplayManager::getVerticalPixels() const { return m_window_vertical_pixels; }
 
-    sf::RenderWindow* DisplayManager::getWindow() const {
-        return m_p_window;
-    }
+    sf::RenderWindow* DisplayManager::getWindow() const { return m_p_window; }
 }
