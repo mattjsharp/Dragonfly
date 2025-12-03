@@ -100,7 +100,7 @@ namespace df {
         // Draw background rectange since text is "see through" in SFML.
         static sf::RectangleShape rectange;
         rectange.setSize(sf::Vector2f(charWidth(), charHeight()));
-        rectange.setFillColor(WINDOW_BACKGROUND_COLOR_DEFAULT);
+        rectange.setFillColor(m_window_background_color);
         rectange.setPosition({
             pixel_pos.getX() - charWidth()/10,
             pixel_pos.getY() + charHeight()/5
@@ -191,7 +191,7 @@ namespace df {
         // Draw string character by character.
         for (int i = 0; i < str.size(); i++) {
             Vector temp_pos(starting_pos.getX() + i, starting_pos.getY());
-            if (!drawCh(temp_pos, str[i], color)) // Fails if any character can't be drawn.
+            if (drawCh(temp_pos, str[i], color)) // Fails if any character can't be drawn.
                 return -1;
         }
 
