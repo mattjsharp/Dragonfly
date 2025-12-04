@@ -12,7 +12,5 @@ namespace df {
         m_event_type = new_type;
     }
 
-    std::string Event::getType() const {
-        return m_event_type;
-    }
+    std::string Event::getType() const { return m_event_type; }
 }

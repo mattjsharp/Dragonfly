@@ -27,25 +27,19 @@ namespace df {
         m_id = new_id;
     }
 
-    int Object::getId() const {
-        return m_id;
-    }
+    int Object::getId() const { return m_id; }
 
     void Object::setType(std::string new_type) {
         m_type = new_type;
     }
 
-    std::string Object::getType() const {
-        return m_type;
-    }
+    std::string Object::getType() const { return m_type; }
 
     void Object::setPosition(Vector new_pos) {
         m_position = new_pos;
     }
 
-    Vector Object::getPosition() const {
-        return m_position;
-    }
+    Vector Object::getPosition() const { return m_position; }
 
     int Object::setAltitude(int new_altitude) {
         if (new_altitude < 0 || new_altitude > MAX_ALTITUDE)
@@ -56,15 +50,9 @@ namespace df {
         return 0;
     }
 
-    int Object::getAltitude() const {
-        return m_altitude;
-    }
+    int Object::getAltitude() const { return m_altitude; }
 
-    int Object::eventHandler(const Event* p_e) {
-        return 0;
-    }
+    int Object::eventHandler(const Event* p_e) { return 0; }
 
-    int Object::draw() {
-        return 0;
-    }
+    int Object::draw() { return 0; }
 }

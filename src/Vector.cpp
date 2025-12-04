@@ -12,17 +12,13 @@ namespace df {
         m_x = new_x;
     }
 
-    float Vector::getX() const {
-        return m_x;
-    }
+    float Vector::getX() const { return m_x; }
 
     void Vector::setY(float new_y) {
         m_y = new_y;
     }
 
-    float Vector::getY() const {
-        return m_y;
-    }
+    float Vector::getY() const { return m_y; }
 
     void Vector::setXY(float new_x, float new_y) {
         m_x = new_x;

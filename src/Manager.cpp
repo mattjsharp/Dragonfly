@@ -18,9 +18,7 @@ namespace df {
         m_type = new_type;
     }
 
-    std::string Manager::getType() const {
-        return m_type;
-    }
+    std::string Manager::getType() const { return m_type; }
 
     int Manager::startUp() {
         m_is_started = true;

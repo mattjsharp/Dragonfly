@@ -13,7 +13,5 @@ namespace df {
         m_step_count = new_step_count;
     }
 
-    int EventStep::getStepCount() const {
-        return m_step_count;
-    }
+    int EventStep::getStepCount() const { return m_step_count; }
 }
