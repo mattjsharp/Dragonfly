@@ -79,7 +79,7 @@ namespace df {
 
             // Provide step event to all Objects.
             EventStep es(getStepCount());
-            onEvent(&s);
+            onEvent(&es);
 
             WM.update(); // Update WorldManager.
             WM.draw(); // Draw all Objects.
