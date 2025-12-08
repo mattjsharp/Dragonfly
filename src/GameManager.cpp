@@ -4,6 +4,7 @@
 #include "LogManager.h"
 #include "WorldManager.h"
 #include "DisplayManager.h"
+#include "InputManager.h"
 #include "Clock.h"
 #include "Object.h"
 #include "ObjectList.h"
@@ -25,20 +26,26 @@ namespace df {
     int GameManager::startUp() {
         if (LM.startUp())
             return -1;
-        else {
-            LM.writeLog("DF: Starting GameManager...");
-            LM.writeLog("DF: LogManager starated.");
-        }
+        LM.writeLog("DF: Starting GameManager...");
+        LM.writeLog("DF: LogManager starated.");
         
-        if (WM.startUp())
+        if (WM.startUp()) {
             LM.writeLog("DF: Failed to start WorldManager.");
-        else
-            LM.writeLog("DF: WorldManager started.");
+            return -1;
+        }
+        LM.writeLog("DF: WorldManager started.");
         
-        if (DM.startUp())
+        if (DM.startUp()) {
             LM.writeLog("DF: Failed to start DisplayManager.");
-        else
-            LM.writeLog("DF: DisplayManager Starated");
+            return -1;
+        }
+        LM.writeLog("DF: DisplayManager started.");
+
+        if (IM.startUp()) {
+            LM.writeLog("DF: Failed to start InputManager.");
+            return -1;
+        }
+        LM.writeLog("DF: InputManager started.");
 
         LM.writeLog("DF: GameManager started.");
 
@@ -51,9 +58,11 @@ namespace df {
 
         LM.writeLog("DF: Shutting down GameManager...");
 
+        IM.shutDown();
         DM.shutDown();
         WM.shutDown();
         LM.shutDown();
+
         Manager::shutDown();
     }
 
@@ -70,12 +79,7 @@ namespace df {
 
             clock.delta(); // Mark loop start.
 
-            // === GAME LOGIC ====================================================
-            // Get input
-            // Update world
-            // Render
-            // Swap buffer
-            // ===================================================================
+            IM.getInput();
 
             // Provide step event to all Objects.
             EventStep es(getStepCount());
