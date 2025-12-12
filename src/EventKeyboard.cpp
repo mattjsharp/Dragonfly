@@ -2,6 +2,8 @@
 
 namespace df {
     EventKeyboard::EventKeyboard() {
+        m_key_val = Keyboard::Key::UNDEFINED_KEY;
+        m_keyboard_action = UNDEFINED_KEYBOARD_ACTION;
         setType(KEYBOARD_EVENT);
     }
 
