@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include "DisplayManager.h"
 #include "EventKeyboard.h"
+#include "EventMouse.h"
 
 namespace df {
 
@@ -150,6 +151,19 @@ namespace df {
 
             return Keyboard::Key::UNDEFINED_KEY;
         }
+
+        Mouse::Button buttonFromSFMLButton(sf::Mouse::Button button) {
+            switch (button) {
+                case sf::Mouse::Button::Left:
+                    return Mouse::Button::LEFT;
+                case sf::Mouse::Button::Right:
+                    return Mouse::Button::RIGHT;
+                case sf::Mouse::Button::Middle:
+                    return Mouse::Button::MIDDLE;
+                default:
+                    return Mouse::Button::UNDEFINED_MOUSE_BUTTON;
+            }
+        }
     }
 
     InputManager::InputManager() {
@@ -192,30 +206,49 @@ namespace df {
             if (p_event->is<sf::Event::KeyPressed>()) {
                 sf::Event::KeyPressed* p_kb_event = reinterpret_cast<sf::Event::KeyPressed*>(&e);
 
-                sf::Keyboard::Key key;
-                key = p_kb_event->code;
+                sf::Keyboard::Key sf_key;
+                sf_key = p_kb_event->code;
 
-                Keyboard::Key df_key= keyFromSFMLKey(key);
+                Keyboard::Key key= keyFromSFMLKey(sf_key);
 
                 EventKeyboard ek;
                 ek.setKeyboardAction(KEY_PRESSED);
-                ek.setKey(df_key);
+                ek.setKey(key);
 
                 onEvent(&ek);
 
             } else if (p_event->is<sf::Event::KeyReleased>()) {
-                sf::Event::KeyPressed* p_kb_event = reinterpret_cast<sf::Event::KeyPressed*>(&e);
+                sf::Event::KeyReleased* p_kb_event = reinterpret_cast<sf::Event::KeyReleased*>(&e);
 
-                sf::Keyboard::Key key;          // TODO: code duplication :(
-                key = p_kb_event->code;
+                sf::Keyboard::Key sf_key;          // TODO: code duplication :(
+                sf_key = p_kb_event->code;
 
-                Keyboard::Key df_key= keyFromSFMLKey(key);
+                Keyboard::Key key = keyFromSFMLKey(sf_key);
 
                 EventKeyboard ek;
                 ek.setKeyboardAction(KEY_RELEASED);
-                ek.setKey(df_key);
+                ek.setKey(key);
 
                 onEvent(&ek);
+            } else if (p_event->is<sf::Event::MouseMoved>()) {
+                sf::Event::MouseMoved* p_mse_event = reinterpret_cast<sf::Event::MouseMoved*>(&e);
+
+                EventMouse em;
+                em.setMouseAction(MOVED);
+                em.setMousePosition({p_mse_event->position.x, p_mse_event->position.y});
+
+                onEvent(&em);
+            } else if (p_event->is<sf::Event::MouseButtonPressed>()) {
+                sf::Event::MouseButtonPressed* p_mse_event = reinterpret_cast<sf::Event::MouseButtonPressed*>(&e);
+                sf::Mouse::Button sf_button = p_mse_event->button;
+
+                Mouse::Button button = buttonFromSFMLButton(sf_button);
+
+                EventMouse em;
+                em.setMouseAction(CLICKED);
+                em.setMouseButton(button);
+
+                onEvent(&em);
             }
         }
     }
