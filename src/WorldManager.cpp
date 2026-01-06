@@ -55,8 +55,21 @@ namespace df {
     }
 
     void WorldManager::update() {
+        // Update Object positions based on their velocities.
+
+        // Iterate through all Objects.
+        for (int i = 0; i < m_updates.getCount(); ++i) {
+            // Add velocity to position.
+            Vector new_pos = m_updates[i]->predictPosition();
+
+            // If Object should change position, then move.
+            if (new_pos != m_updates[i]->getPosition()) {
+                m_updates[i]->setPosition(new_pos);
+            }
+        }
+
         // Delete all marked Objects.
-        for (int i = 0; i < m_deletions.getCount(); i++) {
+        for (int i = 0; i < m_deletions.getCount(); ++i) {
             delete m_deletions[i];
         }
 
@@ -66,7 +79,7 @@ namespace df {
 
     int WorldManager::markForDelete(Object* p_o) {
         // Object might already have been marked, so only add once.
-        for (int i = 0; i < m_deletions.getCount(); i++) {
+        for (int i = 0; i < m_deletions.getCount(); ++i) {
             if (m_deletions[i] == p_o) {    // Object already in list.
                 return 0;                   // This is still "ok".
             }
@@ -77,8 +90,8 @@ namespace df {
     }
 
     void WorldManager::draw() {
-        for (int alt = 0; alt <= MAX_ALTITUDE; alt++) { // Draw in layers of altitude.
-            for (int i = 0; i < m_updates.getCount(); i++) {
+        for (int alt = 0; alt <= MAX_ALTITUDE; ++alt) { // Draw in layers of altitude.
+            for (int i = 0; i < m_updates.getCount(); ++i) {
                 if (m_updates[i]->getAltitude() == alt) {
                     m_updates[i]->draw();
                 }

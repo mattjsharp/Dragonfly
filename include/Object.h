@@ -7,6 +7,12 @@
 
 namespace df {
 
+enum Solidness {
+    HARD,       // Object causes collisions and impedes.
+    SOFT,       // Object causes collisions, but doesn't impede.
+    SPECTRAL    // Object doesn't cause collisions.
+};
+
 // Forward declarations.
 class Event;
 
@@ -16,6 +22,8 @@ private:
     int m_altitude;         // 0 to MAX supported (lower drawn first).
     std::string m_type;     // Game programmer defined type.
     Vector m_position;      // Position in game world.
+    Vector m_direction;     // Direction vector.
+    float m_speed;          // Object speed in direction.
 
 public:
     // Construct Object. Set default parameters and
@@ -57,6 +65,28 @@ public:
 
     // Draws object to the display.
     virtual int draw();
+
+    // Set speed of Object.
+    void setSpeed(float speed);
+
+    // Get speed of Object.
+    float getSpeed() const;
+
+    // Set direction of Object.
+    void setDirection(Vector new_direction);
+
+    // Get direction of Object.
+    Vector getDirection() const;
+
+    // Set direction and speed of Object.
+    void setVelocity(Vector new_velocity);
+
+    // Get velocity of Object based on direction and speed.
+    Vector getVelocity() const;
+
+    // Predict Object position based on speed and direction.
+    // Return predicted position.
+    Vector predictPosition();
 };
 
 }

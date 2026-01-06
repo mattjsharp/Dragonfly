@@ -8,6 +8,14 @@ namespace df {
 
     Vector::Vector() : m_x(0), m_y(0) {}
 
+    bool Vector::operator==(const Vector& other) const {
+        return (m_x == other.getX() && m_y == other.getY());
+    }
+
+    bool Vector::operator!=(const Vector& other) const {
+        return !(operator==(other));
+    }
+
     void Vector::setX(float new_x) {
         m_x = new_x;
     }

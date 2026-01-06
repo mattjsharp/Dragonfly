@@ -15,6 +15,12 @@ public:
     // Default d3 (x, y) is (0, 0).
     Vector();
 
+    // Overloading = operator.
+    bool operator==(const Vector& other) const;
+
+    // Overloading != 
+    bool operator!=(const Vector& other) const;
+
     // Get/set horizontal component.
     void setX(float new_x);
     float getX() const;

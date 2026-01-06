@@ -16,9 +16,4 @@ make
 ```
 
 ## Notes
-When compiling a game with the library, only use the headers provided from this implementation of the dragonfly engine. It should still be compatable with all dragonfly games (eventually). That being said, I have servearl issues with the engine iself, particularly with how it is written.
-
-Issues:
-- Inconsistient use and mixing of standard libraries (e.g. not using c++ versions of c libraires and opting to do things the c way)
-- Inconsistient return codes throughout modules (integers, booleans)
-- Handling raw pointers unnecessarily.
+When compiling a game with the library, only use the headers provided from this implementation of the dragonfly engine. It should still be compatable with all dragonfly games (eventually). That being said, I have servearl issues with the engine iself, particularly with how it is written as it does not does closely follow the C++ core guidelines.
