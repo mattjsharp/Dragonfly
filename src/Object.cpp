@@ -88,4 +88,25 @@ namespace df {
         // Return new position.
         return new_pos;
     }
+
+    bool Object::isSolid() const {
+        switch (m_solidness) {
+            case HARD:
+            case SOFT:
+                return true;
+        }
+        return false;
+    }
+
+    int Object::setSolidness(Solidness new_solid) {
+        switch (m_solidness) {
+            case HARD:
+            case SOFT:
+                m_solidness = new_solid;
+                return 0;
+        }
+        return -1;
+    }
+
+    Solidness Object::getSolidness() const { return m_solidness; }
 }

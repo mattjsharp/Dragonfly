@@ -24,6 +24,7 @@ private:
     Vector m_position;      // Position in game world.
     Vector m_direction;     // Direction vector.
     float m_speed;          // Object speed in direction.
+    Solidness m_solidness;  // Solidness of object.
 
 public:
     // Construct Object. Set default parameters and
@@ -87,6 +88,17 @@ public:
     // Predict Object position based on speed and direction.
     // Return predicted position.
     Vector predictPosition();
+
+    // Return true if Object is HARD or Soft.
+    // Else false.
+    bool isSolid() const;
+
+    // Set object solidness, which checks for consistency.
+    // Return 0 if ok, else -1.
+    int setSolidness(Solidness new_solid);
+
+    // Return object solidness.
+    Solidness getSolidness() const;
 };
 
 }
